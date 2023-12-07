@@ -1,8 +1,4 @@
-class Set:
-    def has(self, e):
-        pass
-
-class SetA(Set):
+class SetA:
     def has(self, e):
         return not e.has(e)
 
