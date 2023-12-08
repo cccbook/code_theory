@@ -12,4 +12,4 @@ lambda表达式之间的等价性，无法找到某个通用的函数来判定�
 
 THEOREM XVIII, There is no recursive function of a formula C, whose value is 2 or 1 according as C has a normal form or not.
 
-THEOREMXIX. There is no recursive function of two formulas A and B, whose value is 2 or 1 according as A conv B or not.
+THEOREM XIX. There is no recursive function of two formulas A and B, whose value is 2 or 1 according as A conv B or not.

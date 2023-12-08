@@ -4,8 +4,8 @@ NOT   = lambda c:c(FALSE)(TRUE)
 IF    = lambda c:lambda t:lambda f:c(t)(f)
 
 ASSERT = lambda truth: (IF(truth)
-    (lambda description:f'[\x1b[32m✓\x1b[0m] ${description}')
-    (lambda description:f'[\x1b[31m✗\x1b[0m] ${description}')
+    (lambda description:f'[✓] ${description}')
+    (lambda description:f'[✗] ${description}')
 )
 
 REFUTE = lambda truth:ASSERT(NOT(truth))

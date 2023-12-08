@@ -10,9 +10,9 @@ OR    = lambda p:lambda q:p(p)(q) # if p then p else q
 XOR   = lambda p:lambda q:p(NOT(q))(q) #  if p then not q else q
 NOT   = lambda c:c(FALSE)(TRUE) # if c then false else true
 
-ASSERT = lambda truth: (IF(truth)\
-    (lambda description:f'[\x1b[32m✓\x1b[0m] _{description}')\
-    (lambda description:f'[\x1b[31m✗\x1b[0m] _{description}')
+ASSERT = lambda truth: (IF(truth)
+    (lambda description:f'[✓] ${description}')
+    (lambda description:f'[✗] ${description}')
 )
 
 REFUTE = lambda truth:ASSERT(NOT(truth))

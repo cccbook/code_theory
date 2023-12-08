@@ -10,9 +10,9 @@ OR    = lambda p:lambda q:p(p)(q) # if p then p else q
 XOR   = lambda p:lambda q:p(NOT(q))(q) #  if p then not q else q
 NOT   = lambda c:c(FALSE)(TRUE) # if c then false else true
 
-ASSERT = lambda truth: (IF(truth)\
-    (lambda description:f'[\x1b[32m✓\x1b[0m] _{description}')\
-    (lambda description:f'[\x1b[31m✗\x1b[0m] _{description}')
+ASSERT = lambda truth: (IF(truth)
+    (lambda description:f'[✓] ${description}')
+    (lambda description:f'[✗] ${description}')
 )
 
 REFUTE = lambda truth:ASSERT(NOT(truth))
@@ -81,12 +81,11 @@ Y = lambda f:\
 
 # Lists
 
-CONS = lambda x:lambda y:lambda f:f(x)(y)
-CAR  = lambda p:p(TRUE)
-CDR  = lambda p:p(FALSE)
+CONS = lambda x:lambda y:lambda f:f(x)(y) # 將 x,y 形成配對 PAIR(x,y)
+CAR  = lambda p:p(TRUE) # 取得 PAIR(x,y) 中的頭部 x (HEAD)
+CDR  = lambda p:p(FALSE) # 取得 PAIR(x,y) 中的尾部 y (TAIL)
 
-# RANGE = lambda m:lambda n:Y(lambda f:lambda m:IF(IS_EQUAL(m)(n))(lambda _: CONS(m)(NIL))(lambda _: CONS(m)(f(SUCCESSOR(m))))())(m)
-
+# ==== 以下為常用的 functional programming 函數 ====
 RANGE = lambda m:lambda n:Y(lambda f:lambda m:IF(IS_EQUAL(m)(n))\
   (lambda _: CONS(m)(NIL))\
   (lambda _: CONS(m)(f(SUCCESSOR(m))))\
@@ -197,11 +196,13 @@ TEST('MAP')(ASSERT(AND(\
 # Examples
 print('\n--- Examples ---\n')
 
+# 階層 FACTORIAL(n) = n!
 FACTORIAL = Y(lambda f:lambda n:IF(IS_ZERO(n))\
   (lambda _:SUCCESSOR(n))\
   (lambda _:MULTIPLICATION(n)(f(PREDECESSOR(n))))\
 (NIL))
 
+# 費氏數列函數 FIBONACCI(n)
 FIBONACCI = Y(lambda f:lambda n:\
   IF(IS_LESS_THAN_EQUAL(n)(SUCCESSOR(lambda f:IDENTITY)))\
   (lambda _:n)\
